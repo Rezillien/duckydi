@@ -89,8 +89,10 @@ public class Main {
             if(instrumentFlag) {
                 if (Integer.valueOf(values[0]) < 250) {
                     if(Integer.valueOf(values[1])>150){
+                        System.out.println("instrument up");
                         instrument++;
                     } else{
+                        System.out.println("instrument down");
                         instrument--;
                     }
                     player.setInstrument(instrument);
@@ -109,6 +111,7 @@ public class Main {
 
                     status_byte = ubytes[0];//key on | key off
                     player.play(data_byte_1, data_byte_2);
+                    System.out.println("note"+data_byte_1+" up, volume: "+ data_byte_2);
                 }
             } else {
                 if (Integer.valueOf(values[2]) < 100) {
@@ -116,6 +119,7 @@ public class Main {
                     ubytes[0] = 0x82;
                     status_byte = ubytes[0];//key on | key off
                     player.release(data_byte_1, data_byte_2);
+                    System.out.println("note"+data_byte_1+" down, volume: "+ data_byte_2);
                 }
             }
 

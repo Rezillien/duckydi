@@ -60,6 +60,10 @@ while(1):
         img3 = cv2.rectangle(frame, (x2,y2), (x2+w2,y2+h2), 255,2)
         cv2.imshow('img3',img3)
 
+        if track_window==track_window2:
+            track_window=(c,r,w,h)
+            track_window2=(c2,r2,w2,h2)
+
         print(x,";",y,";",x2,";",y2)
         sys.stdout.flush()
 
