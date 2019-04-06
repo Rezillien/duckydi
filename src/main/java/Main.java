@@ -65,6 +65,8 @@ public class Main {
         var ubytes = new int[3];
         Main player = new Main();
         boolean flag = true;
+        int instrument = 0x01;
+        boolean instrumentFlag = true;
         int status_byte_instrument, data_byte_1_instrument, status_byte, data_byte_1, data_byte_2;
         player.setInstrument(0x01);
         System.out.println("status " + 0xC2 + " " + 0xC2);
@@ -83,6 +85,22 @@ public class Main {
 //            while(flag){
             data_byte_1 = ubytes[1];//note
             data_byte_2 = ubytes[2];//velocity
+
+            if(instrumentFlag) {
+                if (Integer.valueOf(values[0]) < 250) {
+                    if(Integer.valueOf(values[1])>150){
+                        instrument++;
+                    } else{
+                        instrument--;
+                    }
+                    player.setInstrument(instrument);
+                    instrumentFlag = false;
+                }
+            }else {
+                if(Integer.valueOf(values[0])>250){
+                    instrumentFlag = true;
+                }
+            }
 
             if(flag) {
                 if (Integer.valueOf(values[2]) > 100) {
